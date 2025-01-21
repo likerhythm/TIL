@@ -55,7 +55,7 @@ literalStr == noneLiteralStr; // false;
 ```
 
 ### String Constant Pool주의할 점
-String Constant Pool은 GC의 관리를 받지 않는다. 그렇기 때문에 자칫하면 무분별하게 사용한다면 메모리 부족 문제를 야기할 수 있다. 특히, String 클래스는 intern이라는 메서드를 제공하는데 이는 String Constant Pool에 강제로 해당 객체를 집어 넣는 메서드이다. 이 메서드를 사용할 경우 메모리 부족 문제가 발생할 수 있기 때문에 절대 사용하지 말아야 한다.
+String Constant Pool은 GC의 관리를 받지 않는다. 그렇기 때문에 자칫하면 메모리 부족 문제를 야기할 수 있다. 특히, String 클래스는 intern이라는 메서드를 제공하는데 이는 String Constant Pool에 강제로 해당 객체를 집어 넣는 메서드이다. 이 메서드를 사용할 경우 메모리 부족 문제가 발생할 수 있기 때문에 절대 사용하지 말아야 한다.
 
 참고로 같은 문자열에 대해 중복하여 intern을 호출하더라도 중복되어 주입되지는 않는다.
 
