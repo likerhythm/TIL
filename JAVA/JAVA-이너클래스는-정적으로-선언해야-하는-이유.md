@@ -6,10 +6,14 @@ Inner Class가 Outer Class의 자원을 사용해야 하는 경우 Inner Class�
 다음 코드를 보면 InnerClass가 static으로 선언된 경우 OuterClass의 필드 변수에 접근할 수 없다.
 다만 InnerClass가 static으로 선언되더라도 OuterClass의 static 변수에는 접근할 수 있다.
 
-![non-static-inner-class](../image/JAVA/non-static-inner-class.png)
-![static-inner-class1](../image/JAVA/static-inner-class1.png)
-![static-inner-class2](../image/JAVA/static-inner-class2.png)
-![static-inner-class3](../image/JAVA/static-inner-class3.png)
+![non-static-inner-class](./image/non-static-inner-class.png)
+코드1
+![static-inner-class1](./image/static-inner-class1.png)
+코드2
+![static-inner-class2](./image/static-inner-class2.png)
+코드3
+![static-inner-class3](./image/static-inner-class3.png)
+코드4
 
 위 경우가 아니라면 static으로 선언하는 게 좋다. 왜일까?
 ## static으로 선언해야 하는 이유
@@ -22,7 +26,7 @@ Inner Class가 Outer Class의 자원을 사용해야 하는 경우 Inner Class�
 그래서 InnerClass는 정규화된 this를 사용하여 OuterClass에 접근할 수 있다. 
 정규화된 this란 클래스명.this 형태로 바깥 클래스 이름을 명시하는 방식이다.
 
-![compile-non-static-inner-class](../image/JAVA/compile-non-static-inner-class.png)
+![compile-non-static-inner-class](./image/compile-non-static-inner-class.png)
 
 그렇다면 외부 클래스에 대한 참조를 가지는게 왜 위험할까? 
 JVM의 GC를 떠올리면 된다. GC는 런타임 중에 참조되지 않는 객체를 찾아 제거한다. 
