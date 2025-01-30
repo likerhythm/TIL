@@ -84,6 +84,50 @@ binary name은 `toString()`을 호출할 때 가끔 보이는 `java.lang.String`
 
 위임 원칙을 준수하면 상위 클래스 로더로 로딩 요청을 위임하기 때문에 유일성 원칙을 보장할 수 있다.
 
+### 1-3. 로딩 - 동적 클래스 로딩
+JVM은 클래스를 로딩할 때 처음부터 모든 클래스를 로딩하지 않는다.
+실제로 클래스가 참조되는 시점에 JVM에 링크되고 런타임 시점에 로딩되는 **동적 로딩** 과정을 거친다.
+
+동적 로딩은 **로드 타임 동적 로딩(Load-time Dynamic Loading)**과 **런타임 동적 로딩(Run-time Dynamic Loading)**으로 나뉜다.
+
+### 1-3-1. 로딩 - 로드 타임 동적 로딩(Load-time Dynamic Loading)
+```java
+public class HelloWorld { 
+        public static void main(String[] args) { 
+                System.out.println("안녕하세요!"); 
+        } 
+}
+```
+위 코드의 경우 클래스 로더는 다음과 같이 동작한다.
+1. Bootstrap 클래스 로더는 `Object.class`를 로드한다.
+2. 프로그램을 시작하기 위해 `HelloWorld.class`를 로드한다.
+3. `HelloWorld.class`를 로드하는 과정에서 필요한 클래스인 `java.lang.String` 클래스와 `java.lang.System`을 로드한다.
+
+이런 식으로 **클래스를 로드하는 과정**에서 필요한 클래스를 동적으로 로드하는 것을 로드 타임 동적 로딩이라고 한다.
+
+### 1-3-2. 로딩 - 런타임 동적 로딩(Load-time Dynamic Loading)
+```java
+public class RuntimeLoading { 
+        public static void main(String[] args) { 
+                try { 
+                        Class cls = Class.forName(args[0]); 
+                        Object obj = cls.newInstance(); 
+                        Runnable r = (Runnable) obj; 
+                        r.run(); 
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+        }
+}
+```
+위의 RuntimeLoading 클래스 코드에서 `Class.forName(className)`메서드가 실행되면 className에 해당하는 클래스가 로드된다.
+하지만 클래스 로더는 `Class.forName(className)`메서드가 실행되기 전까지 RuntimeLoading 클래스가 어떤 클래스를 참조하는지 알 수 없다.
+
+따라서 클래스 로더는 RuntimeLoading 클래스를 로드할 때에는 어떤 클래스로 로드하지 않는다.
+그리고 `Class.forName(className)`메서드가 호출되는 순간 비로소 `args[0]`에 해당하는 클래스를 로드한다.
+
+이처럼 클래스가 로드되는 시점이 아니라 코드를 실행하다가 필요에 따라 참조한느 클래스를 로드하는 로딩 방식을 런타임 동적 로딩이라고 한다.
+
 ## 2. 링킹 - 심볼릭 레퍼런스(Symbolic Reference)
 링킹 과정에서는 **검증**(.class 파일 형식이 유효한지 검사), **준비**(메모리 할당 및 필드, 메서드, 인터페이스를 나타내는 데이터 구조 준비),
 **분석**(심볼릭 레퍼런스를 실제 레퍼런스로 교체, Optional) 과정을 수행한다. 그 중 분석 단계에서 사용된 용어인 '심볼릭 레퍼런스'란 무엇일까?
@@ -91,6 +135,9 @@ binary name은 `toString()`을 호출할 때 가끔 보이는 `java.lang.String`
 심볼릭 레퍼런스는 우리가 개발을 하면서 사용한 class, field, method의 이름을 지칭한다. 
 실제 메모리를 참조하지 않고 추상적이라고 할 수 있는 단어나 기호를 가리킨다. 
 링킹 단계에서는 이러한 심볼릭 레퍼런스를 실제 레퍼런스, 즉 실제 메모리 주소로 변환하는 과정을 거친다.
+
+## 3. 변수 초기화
+
 
 # 참조
 [blog](https://steady-coding.tistory.com/593)</br>
