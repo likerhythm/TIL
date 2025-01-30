@@ -53,7 +53,7 @@ JAVA의 Class Loader는 Delegation Principle(위임 원칙), Visibility Principl
 Uniqueness Principle(유일성 원칙) 세 가지 작동 원칙을 가진다.
 
 ### Delegation Principle
-위임 원칙은 로딩할 클래스를 찾을 때에는 위에서 설명한 세 가지 Class Loader의 하위 계층에서 상위 계층으로 로딩을 위임하는 원칙이다.
+**위임 원칙**은 로딩할 클래스를 찾을 때에는 위에서 설명한 세 가지 Class Loader의 하위 계층에서 상위 계층으로 로딩을 위임하는 원칙이다.
 아래 그림을 참고하면서 설명을 보면 이해가 쉬울 것이다.<br> 
 ![class loader delegation principle](../image/class-loader-delegation-principle.png)
 `Internal.class`라는 클래스 파일이 로드 되어야 하는 상황을 가정하면 다음과 같은 과정이 일어난다.(아래 과정의 번호는 위 사진의 번호와 무관하다)
@@ -70,7 +70,7 @@ Uniqueness Principle(유일성 원칙) 세 가지 작동 원칙을 가진다.
 11. 9번 결과가 존재하지 않는다면 `ClassNotFoundException` 예외를 던진다.
 
 ### Visibility Principle
-가시 범위 원칙은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 볼 수 있고, 
+**가시 범위 원칙**은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 볼 수 있고, 
 반대로 상위 클래스 로더는 하위 클래스 로더가 로딩한 클래스를 볼 수 없다는 원칙이다.<br>
 이 원칙을 둔 이유는 하위 클래스와 상위 클래스를 명확하게 구분하기 위해서이다.
 이 원칙을 지킨다면 하위 클래스(예를 들어 개발자가 직접 생성한 클래스)를 로드할 때 상위 클래스(예를 들어 `Object`)를
@@ -78,13 +78,20 @@ Uniqueness Principle(유일성 원칙) 세 가지 작동 원칙을 가진다.
 구분한 의미가 퇴색될 것이다.
 
 ### Uniqueness Principle
-유일성 원칙은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 다시 로딩하지 않도록 함으로써
+**유일성 원칙**은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 다시 로딩하지 않도록 함으로써
 로딩된 클래스들이 유일하도록 보장하는 원칙이다. 유일성을 식별하는 기준은 클래스의 binary name이다.
 binary name은 `toString()`을 호출할 때 가끔 보이는 `java.lang.String` 등과 같은 이름이다.
 
 위임 원칙을 준수하면 상위 클래스 로더로 로딩 요청을 위임하기 때문에 유일성 원칙을 보장할 수 있다.
 
-![class-loader-delegation-principle](../image/class-loader-delegation-principle.png)
+## 2. 링킹 - 심볼릭 레퍼런스(Symbolic Reference)
+링킹 과정에서는 **검증**(.class 파일 형식이 유효한지 검사), **준비**(메모리 할당 및 필드, 메서드, 인터페이스를 나타내는 데이터 구조 준비),
+**분석**(심볼릭 레퍼런스를 실제 레퍼런스로 교체, Optional) 과정을 수행한다. 그 중 분석 단계에서 사용된 용어인 '심볼릭 레퍼런스'란 무엇일까?
+
+심볼릭 레퍼런스는 우리가 개발을 하면서 사용한 class, field, method의 이름을 지칭한다. 
+실제 메모리를 참조하지 않고 추상적이라고 할 수 있는 단어나 기호를 가리킨다. 
+링킹 단계에서는 이러한 심볼릭 레퍼런스를 실제 레퍼런스, 즉 실제 메모리 주소로 변환하는 과정을 거친다.
+
 # 참조
 [blog](https://steady-coding.tistory.com/593)</br>
 [blog](https://beststar-1.tistory.com/13)</br>
