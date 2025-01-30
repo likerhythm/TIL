@@ -49,7 +49,42 @@ Application Class Loader는 개발자가 작성한 클래스를 로드한다.
 
 ## 1-2. 로딩 - Class Loader의 작동 원칙 세 가지
 
+JAVA의 Class Loader는 Delegation Principle(위임 원칙), Visibility Principle(가시 범위 원칙), 
+Uniqueness Principle(유일성 원칙) 세 가지 작동 원칙을 가진다.
 
+### Delegation Principle
+위임 원칙은 로딩할 클래스를 찾을 때에는 위에서 설명한 세 가지 Class Loader의 하위 계층에서 상위 계층으로 로딩을 위임하는 원칙이다.
+아래 그림을 참고하면서 설명을 보면 이해가 쉬울 것이다.<br> 
+![class loader delegation principle](../image/class-loader-delegation-principle.png)
+`Internal.class`라는 클래스 파일이 로드 되어야 하는 상황을 가정하면 다음과 같은 과정이 일어난다.(아래 과정의 번호는 위 사진의 번호와 무관하다)
+1. 그러면 우선 Application Class Loader가 이 요청을 받아들이고 상위 Class Loader인 Extension Class Loader에게 이 요청을 위임한다.<br>
+2. 요청을 받은 Extension Class Loader는 상위 계층인 Bootstrap Class Loader에게 요청을 위임한다.<br>
+3. 최상위 Class Loader인 Bootstrap Class Loader는 요청을 받아들이고 자신이 담당하는 클래스 중 `Internal.class가` 존재하는지 확인한다.
+4. 만약 존재한다면 반환한다.(끝)
+5. 3번 결과가 존재하지 않는다면 하위 Class Loader인 Extension Class Loader에 요청을 전달한다.
+6. Extension Class Loader는 자신이 담당하는 클래스들 중 `Internal.class가` 존재하는지 확인한다.
+7. 만약 존재한다면 반환한다.(끝)
+8. 6번 결과가 존재하지 않는다면 하위 Class Loader인 Application Class Loader에 요청을 전달한다.
+9. 마찬가지로 Application Class Loader도 `Internal.class` 클래스가 존재하는지 확인한다.
+10. 만약 존재한다면 반환한다.(끝)
+11. 9번 결과가 존재하지 않는다면 `ClassNotFoundException` 예외를 던진다.
+
+### Visibility Principle
+가시 범위 원칙은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 볼 수 있고, 
+반대로 상위 클래스 로더는 하위 클래스 로더가 로딩한 클래스를 볼 수 없다는 원칙이다.<br>
+이 원칙을 둔 이유는 하위 클래스와 상위 클래스를 명확하게 구분하기 위해서이다.
+이 원칙을 지킨다면 하위 클래스(예를 들어 개발자가 직접 생성한 클래스)를 로드할 때 상위 클래스(예를 들어 `Object`)를
+볼 수 있기 때문에 정상적으로 로드할 수 있다. 만약 상위 클래스가 하위 클래스를 볼 수 있다면 상위 클래스와 하위 클래스를
+구분한 의미가 퇴색될 것이다.
+
+### Uniqueness Principle
+유일성 원칙은 하위 클래스 로더는 상위 클래스 로더가 로딩한 클래스를 다시 로딩하지 않도록 함으로써
+로딩된 클래스들이 유일하도록 보장하는 원칙이다. 유일성을 식별하는 기준은 클래스의 binary name이다.
+binary name은 `toString()`을 호출할 때 가끔 보이는 `java.lang.String` 등과 같은 이름이다.
+
+위임 원칙을 준수하면 상위 클래스 로더로 로딩 요청을 위임하기 때문에 유일성 원칙을 보장할 수 있다.
+
+![class-loader-delegation-principle](../image/class-loader-delegation-principle.png)
 # 참조
 [blog](https://steady-coding.tistory.com/593)</br>
 [blog](https://beststar-1.tistory.com/13)</br>
