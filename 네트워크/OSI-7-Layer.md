@@ -78,3 +78,10 @@ JPEG, MPEG등과 같은 프로토콜이 사용된다.
 사용자들이 사용하는 애플리케이션 목적에 맞는 통신 방법을 제공한다. 
 응용 프로그램을 통해 네트워크 서비스에 접근할 수 있도록 사용자 인터페이스를 제공한다. 
 파일 전송에는 FTP, 이메일 전송에는 SMTP, 웹 브라우저로 웹 서버에 접속할 때는 HTTP 프로토콜을 사용한다.
+
+## 참조
+https://wntdev.tistory.com/157
+
+https://inpa.tistory.com/entry/WEB-%F0%9F%8C%90-OSI-7%EA%B3%84%EC%B8%B5-%EC%A0%95%EB%A6%AC
+
+https://www.cloudflare.com/ko-kr/learning/network-layer/what-is-the-network-layer/
