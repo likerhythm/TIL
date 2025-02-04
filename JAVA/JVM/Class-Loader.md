@@ -4,6 +4,14 @@
 메모리 영역(Runtime Data Area)의 메소드 영역(Method Area)에 적재하는 역할을 한다.
 모든 클래스를 한번에 로드하지 않고, 필요할 때 로드한다.
 
+## 필요할 때?
+클래스 로딩이 필요한 시기는 다음과 같다.
+- 클래스의 인스턴스가 생성될 때
+- 클래스의 정적 변수가 호출될 때(final로 선언된 상수 제외)
+- 클래스의 정적 메서드가 호출될 때
+눈으로 직접 확인하고 싶다면 JVM을 실행할 때 `-verbose:class` 옵션을 추가하면 클래스 로딩을 디버깅할 수 있다.
+
+## 클래스 로딩 과정
 클래스를 로드하는 과정은 로딩, 링킹, 초기화 세 단계로 이루어진다.
 
 1. 로딩
@@ -136,10 +144,48 @@ public class RuntimeLoading {
 실제 메모리를 참조하지 않고 추상적이라고 할 수 있는 단어나 기호를 가리킨다. 
 링킹 단계에서는 이러한 심볼릭 레퍼런스를 실제 레퍼런스, 즉 실제 메모리 주소로 변환하는 과정을 거친다.
 
-## 3. 변수 초기화
+## 3. 초기화
+클래스 로딩 시점에 클래스의 정적 블록과 정적 멤버 변수가 초기화 된다.(단 inner class는 초기화 대상에서 제외된다.)<br>
 
+다음 코드를 실행해보면 어떤 순서대로 정적 요소가 초기화 되는지 알 수 있다. 초기화 순서는
+1. 정적 블록
+2. 정적 멤버변수
+3. 생성자
+
+순이다.
+```java
+class Main {
+    public static void main(String[] args) {
+        new Single();
+    }
+}
+
+class Single {
+    static {
+        System.out.println("1. 정적 블록");
+    }
+
+    public static Temp temp = new Temp();
+
+    public Single() {
+        System.out.println("3. 생성자");
+    }
+}
+
+class Temp {
+    public Temp () {
+        System.out.println("2. 정적 변수");
+    }
+}
+```
+
+## 내부 클래스의 로드
+outer class의 로딩이 이루어져도 inner class의 로딩이 이루어지진 않는다.
+inner class의 로딩이 이루어져도 outer class의 로딩이 이루어지진 않는다.
 
 # 참조
-[blog](https://steady-coding.tistory.com/593)</br>
-[blog](https://beststar-1.tistory.com/13)</br>
-[blog](https://homoefficio.github.io/2018/10/13/Java-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A1%9C%EB%8D%94-%ED%9B%91%EC%96%B4%EB%B3%B4%EA%B8%B0/)
+[느리더라도 꾸준하게 blog: JVM의 클래스 로더란?](https://steady-coding.tistory.com/593)</br>
+[으뜸별 blog: 클래스 로더](https://beststar-1.tistory.com/13)</br>
+[HomoEfficio blog: Java 클래스 로더 훑어보기](https://homoefficio.github.io/2018/10/13/Java-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A1%9C%EB%8D%94-%ED%9B%91%EC%96%B4%EB%B3%B4%EA%B8%B0/)</br>
+[skyepodium blog: 클래스는 언제 로딩되고 초기화 되는가](https://velog.io/@skyepodium/%ED%81%B4%EB%9E%98%EC%8A%A4%EB%8A%94-%EC%96%B8%EC%A0%9C-%EB%A1%9C%EB%94%A9%EB%90%98%EA%B3%A0-%EC%B4%88%EA%B8%B0%ED%99%94%EB%90%98%EB%8A%94%EA%B0%80)</br>
+
