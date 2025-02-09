@@ -48,6 +48,18 @@ Frame 내에서 사용되는 지역변수, 매개변수, 리턴값 등이 Stack�
 ![jvm stack.png](../image/jvm-stack.png)
 
 ### Heap
+Heap에는 런타임 중에 동적으로 생성된 인스턴스가 저장된다. Heap에는 실제 인스턴스 정보가 저장되며, Stack에는 인스턴스에 접근하기 위한 참조값이 저장된다.
+만약 Heap 영역이 가득 차게 되면 OutOfMemoryError가 발생한다.
+
+Heap은 GC(Garbage Collection)의 대상이 된다. JVM은 효율적인 GC를 위해 heap을 아래와 같은 구조로 나누었다.
+- Young Generation : new 키워드로 새롭게 생성된 인스턴스가 저장되고 이후에 survivor로 이동한다.
+시간이 지나면서 이 영역에 있던 인스턴스가 Tenured Generation 영역으로 이동하거나 GC에 의해 회수된다.(Minor GC)
+- Tenured Generation : Young Generation에 저장되어 있던 오래된 인스턴스들이 이 영역에 저장된다.
+영역이 가득 차게되면 GC를 수행한다(Major GC). Major GC가 발생하면 GC를 수행하는 스레드를 제외한 모든 스레드의 작업을 중지한다.
+
+GC에 대한 자세한 내용은 [이 글](./Garbage-Collection.md)에서 다룬다.
+![jvm heap.png](../image/jvm-heap.png)
+
 
 ### PC Register
 
