@@ -18,10 +18,17 @@ Runtime Data Area의 구성 요소는 아래와 같다.
 - Native Method Stack - Native 언어로 작성된 코드를 실행하기 위한 영역이다.
 
 ### Method Area
-Method Area에는 [Class Loader](./Class-Loader.md)가 로드한 클래스들의 데이터를 저장한다.[(번외-클래스의 로드는 언제 필요할까?)](https://github.com/likerhythm/TIL/blob/main/JAVA/JVM/Class-Loader.md#%ED%95%84%EC%9A%94%ED%95%A0-%EB%95%8C)
-저장되는 데이터는 정적 데이터이며(static final 상수 제외) 애플리케이션이 실행될 때 메모리에 올라가고, 종료될 때 해제된다.
+Method Area에는 [Class Loader](./Class-Loader.md)가 로드한 클래스들에 대한 데이터를 저장한다.[(번외-클래스의 로드는 언제 필요할까?)](https://github.com/likerhythm/TIL/blob/main/JAVA/JVM/Class-Loader.md#%ED%95%84%EC%9A%94%ED%95%A0-%EB%95%8C)
+이는 애플리케이션이 실행될 때 메모리에 올라가고, 종료될 때 해제된다.
 
-클래스 데이터가 존재하기에 인스턴스를 생성하기 위해선 이 영역을 참조해야 한다. 그래서 모든 스레드가 공유한다.
+Method Area 내부에는 Runtime Constant Pool이라는 이름이 붙은 영역이 존재한다. 이는 클래스에 하나씩 존재한다. 
+이 영역에는 런타임 시 필요한 참조 정보를 저장한다. 
+처음 클래스가 로드될 때는 클래스의 바이너리 코드에 포함된 Constant Pool에 메타 데이터(symbolic reference 등)가 저장되어 있다가
+메서드나 클래스가 사용될 때 Class Loader의 링킹 단계를 거쳐서 symbolic reference가 실제 물리 레퍼런스로 변환되어 Runtime Constant Pool에 저장된다.
+
+![runtime constant pool.png](../image/runtime-constant-pool.png)
+
+이 영역에 클래스 데이터가 존재하기에 인스턴스를 생성하기 위해선 이 영역을 참조해야 한다. 그래서 모든 스레드가 공유한다.
 이를 반대로 말하면 시스템 전체적으로 공유되는 클래스는 Method Area에 등록하는 것이 효율적이다는 말이 된다.
 대표적인 예로 Math와 같은 Util 클래스가 있다. 이러한 클래스는 모든 필드 변수와 메서드를 정적으로 선언해야 한다.
 
@@ -41,3 +48,6 @@ Frame은 자바에서 `{ }`로 둘러싸인 영역을 의미한다.
 
 [impala 벨로그 - [JAVA] JVM - Runtime Data Area](https://velog.io/@impala/JAVA-JVM-Runtime-Data-Area)
 
+[dev_isaac 벨로그 - JVM은 꼭 알아야 합니다...](https://velog.io/@dev_isaac/JVM)
+
+[기계인간 John Grib - Java 런타임 상수 풀](https://johngrib.github.io/wiki/java/run-time-constant-pool/)
