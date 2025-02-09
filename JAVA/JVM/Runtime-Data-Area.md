@@ -33,8 +33,18 @@ Method Area 내부에는 Runtime Constant Pool이라는 이름이 붙은 영역�
 대표적인 예로 Math와 같은 Util 클래스가 있다. 이러한 클래스는 모든 필드 변수와 메서드를 정적으로 선언해야 한다.
 
 ### Stack
-저장되는 단위는 Frame이다.
-Frame은 자바에서 `{ }`로 둘러싸인 영역을 의미한다.
+Stack은 임시 데이터가 저장되는 공간이다. PC Register, Native Method Area와 함께 스레드가 생성될 때마다 할당된다.
+스택의 저장 단위는 Frame이다. Frame은 자바에서 중괄호 `{}`로 둘러싸인 영역을 의미한다.
+Frame 내에서 사용되는 지역변수, 매개변수, 리턴값 등이 Stack에 저장된다.
+
+아래 사진을 통해 더 자세히 알아보자.
+- Current Class Constant Pool Reference : Method Area의 Runtime Constant Pool에 대한 참조이다. Frame이 속한 클래스의 상수를 사용하기 위해 참조값을 가진다.
+- Local Variables Array : Frame의 지역 변수를 담는다. this에는 현재 인스턴스에 대한 참조, params에는 매개변수, Local Variables에는 지역 변수가 저장된다.
+- Operand Stack : 피연산값과 연산 과정에서 생기는 중간값을 저장한다. JVM은 하드웨어와 독립된 환경에서 동작 가능하기 위해 연산 과정에서 레지스터를 사용하지 않고, 복잡하더라도 Stack을 사용한다.
+레지스터를 사용할 경우 하드웨어마다 다르게 구현해야 하기 때문이다.
+
+만약 스레드가 사용 가능한 Stack의 사용 범위를 넘으면 `StackOverflowError`가 발생한다.
+스택으 동적으로 확장할 때 또는 새로운 스레드를 만들 때 Stack에 할당할 메모리가 부족하다면 `OutOfMemoryError`가 발생한다.
 ![jvm stack.png](../image/jvm-stack.png)
 
 ### Heap
