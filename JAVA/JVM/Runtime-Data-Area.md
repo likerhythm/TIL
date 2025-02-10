@@ -60,10 +60,15 @@ Heap은 GC(Garbage Collection)의 대상이 된다. JVM은 효율적인 GC를 �
 GC에 대한 자세한 내용은 [이 글](./Garbage-Collection.md)에서 다룬다.
 ![jvm heap.png](../image/jvm-heap.png)
 
-
 ## PC Register
+PC Register는 스레드가 현재 실행 중인 JVM 명령어를 가리킨다.
+JVM은 Stack을 기반으로 동작하기 때문에 Stack에서 꺼낸 Operand를 PC Register에 저장한다(운영체제의 PC Register와 비슷한 역할을 가진 것 같다).
+스레드가 생성되면 PC Register를 위한 공간도 함께 생성되고, 스레드가 소멸하면 같이 소멸한다.
+만약 스레드가 Native 코드를 수행 중이라면 PC Register는 Undefined 값을 가지고 이에 대한 처리는 Native Method Stack에서 담당한다. 
 
 ## Native Method Stack
+JVM에서 Native 언어(C/C++, 어셈블리)로 작성된 코드를 실행하기 위한 메모리 공간이다.
+java 메서드가 아닌 Native 메서를 실행하면 이곳에 해당 메서드에 대한 정보가 저장된다.
 
 # 참조
 [내 벨로그 - Java - 메모리 영역](https://velog.io/@likerhythm/Java-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD)
