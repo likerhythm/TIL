@@ -11,7 +11,6 @@
     * [Execution Engine](./JAVA/JVM/Execution-Engine.md)
     * [Runtime Data Area](./JAVA/JVM/Runtime-Data-Area.md)
     * [Native Method Interface](./JAVA/JVM/Native-Method-Interface.md)
-    * [Native Method Library](./JAVA/JVM/Native-Method-Library.md)
     * [Garbage Collection](./JAVA/JVM/Garbage-Collection.md)
 * [Reflection](./JAVA/Reflection)
     * [Reflection](./JAVA/Reflection/Reflection.md)
