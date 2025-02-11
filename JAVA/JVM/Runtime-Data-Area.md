@@ -19,6 +19,7 @@ Runtime Data Area의 구성 요소는 아래와 같다.
 
 ## Method Area
 Method Area에는 [Class Loader](./Class-Loader.md)가 로드한 클래스들에 대한 데이터를 저장한다.[(번외-클래스의 로드는 언제 필요할까?)](https://github.com/likerhythm/TIL/blob/main/JAVA/JVM/Class-Loader.md#%ED%95%84%EC%9A%94%ED%95%A0-%EB%95%8C)
+클래스의 정보를 담은 Constant Pool과 클래스의 동작을 정의한 Byte Code를 포함한다.
 이는 애플리케이션이 실행될 때 메모리에 올라가고, 종료될 때 해제된다.
 
 Method Area 내부에는 Runtime Constant Pool이라는 이름이 붙은 영역이 존재한다. 이는 클래스에 하나씩 존재한다. 
