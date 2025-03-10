@@ -14,6 +14,7 @@
     * [Garbage Collection](./JAVA/JVM/Garbage-Collection.md)
 * [Reflection](./JAVA/Reflection)
     * [Reflection](./JAVA/Reflection/Reflection.md)
+* [직렬화와 역직렬화](./JAVA/java%20직렬화와%20역직렬화.md)
 
 # OOP
 * [상속, 다형성, 인터페이스](./OOP/상속-다형성-인터페이스.md)
