@@ -74,7 +74,7 @@ java 메서드가 아닌 Native 메서를 실행하면 이곳에 해당 메서�
 # 참조
 [내 벨로그 - Java - 메모리 영역](https://velog.io/@likerhythm/Java-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD)
 
-[impala 벨로그 - [JAVA] JVM - Runtime Data Area](https://velog.io/@impala/JAVA-JVM-Runtime-Data-Area)
+[impala 벨로그 - [java] JVM - Runtime Data Area](https://velog.io/@impala/JAVA-JVM-Runtime-Data-Area)
 
 [dev_isaac 벨로그 - JVM은 꼭 알아야 합니다...](https://velog.io/@dev_isaac/JVM)
 

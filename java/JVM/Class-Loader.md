@@ -36,16 +36,16 @@
 이제 각 단계별로 어떤 과정이 진행되는지 알아보자.
 ## 1-1. 로딩 - Class Loader
 JVM의 Class Loader는 BootStrap / Extension / Application Class Loader 세 가지로 나뉜다.<br>
-Class Loader들은 JAVA 소스코드로 정의되어 있다. 일부 메서드는 native 키워드가 붙어있다. <br>
+Class Loader들은 java 소스코드로 정의되어 있다. 일부 메서드는 native 키워드가 붙어있다. <br>
 native 키워드는 메서드에만 사용할 수 있으며 해당 메서드는 JNI(Java Native Interface 또는 [Native Method Interface](./Native-Method-Interface.md)) 를 사용해서 구현되었음을 뜻한다.
 JNI 인터페이스는 C / C++로 구현되어 있다.  
 각 Class Loader는 Runtime Data Area의 Method Area에 클래스를 로드한다는 동일한 역할을 수행하지만 로드하는 클래스의 종류가 다르다.
 세 Class Loader 모두 `BuiltinClassLoader`라는 클래스를 상속 받는다.
-JAVA 21 버전 기준으로 `ClassLoaders`라는 클래스 내부에 `static class`로 선언되어 있다.
+java 21 버전 기준으로 `ClassLoaders`라는 클래스 내부에 `static class`로 선언되어 있다.
 
 ### Bootstrap Class Loader
-Bootstrap Class Loader는 최상위 Class Loader이다. JAVA 8 버전 이전에는 jre, lib, rt.jar에 담긴 JDK 클래스 파일을 로드한다.
-하지만 JAVA 9 버전 이후부터 JAVA의 파일 구조가 변경되며 Class Loader와 최소한의 자바 클래스(java.lang.Object, Class, ClassLoader)만 로드한다.
+Bootstrap Class Loader는 최상위 Class Loader이다. java 8 버전 이전에는 jre, lib, rt.jar에 담긴 JDK 클래스 파일을 로드한다.
+하지만 java 9 버전 이후부터 JAVA의 파일 구조가 변경되며 Class Loader와 최소한의 자바 클래스(java.lang.Object, Class, ClassLoader)만 로드한다.
 
 ### Extension Class Loader
 Extension Class Loader는 Bootstrap Class Loader가 로드하지 않은 확장 클래스들을 로드한다.
