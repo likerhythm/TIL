@@ -19,6 +19,10 @@
 # oop
 * [상속, 다형성, 인터페이스](./oop/상속-다형성-인터페이스.md)
 
+# database
+* [MVCC](./database/mysql/MVCC.md)
+* [MySQL의 동시성 문제와 락](./database/mysql/동시성%20문제와%20락.md)
+
 # 네트워크
 * [OSI 7 Layer](./네트워크/osi_7_layer)
     * [L1 - Physical Layer](./네트워크/osi_7_layer/L1%20-%20Physical%20Layer.md)
