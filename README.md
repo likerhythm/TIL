@@ -18,6 +18,7 @@
 
 # oop
 * [상속, 다형성, 인터페이스](./oop/상속-다형성-인터페이스.md)
+* [ioc](./oop/IoC.md)
 
 # database
 * [MVCC](./database/mysql/MVCC.md)
