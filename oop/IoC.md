@@ -74,7 +74,7 @@ Spring IoC라고도 부릅니다.
 ps. DI(Dependency Injection)는 IoC의 구현 방법 중 하나라고 합니다.
 그래서 IoC의 필요성이 DI와 연관되는 것 같습니다.
 IoC의 필요성은 결국 SOLID 원칙을 지키기 위해서이고
-객체를 생성하고 관리하는 역할을 가진 장치를 도입함으로써 이를 해결할 수 있습니다.  
+객체를 생성하고 관리하는 역할을 가진 장치를 따로 두는 것으로 SOLID 원칙을 위배하지 않게 할 수 있스니다.  
 
 # 참조
 https://velog.io/@slolee/IoC-DI-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%98%A4%ED%95%B4
