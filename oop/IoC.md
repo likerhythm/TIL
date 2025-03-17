@@ -57,7 +57,8 @@ Spring 프레임워크가 개발자 대신 Repository 객체를 외부에서 주
 이러한 특징을 IoC(Inversion of Control, 제어의 역전)이라고 합니다.
 
 # IoC Container
-IoC는 디자인 패턴입니다. 이를 구현한 것을 IoC Container라고 하며 Spring에서는 이를 BeanFactory라는 이름으로 구현하였습니다.
+IoC는 디자인 패턴입니다. 이를 구현한 것을 IoC Container라고 하며 Spring에서는 이를 BeanFactory라는 이름으로 구현하였고
+Spring IoC라고도 부릅니다.
 위 예제 코드에서 객체를 외부에서 주입 받는데, 실제로 그 객체를 생성하고 주입해주는 역할을 담당합니다.
 
 # IoC가 필요한 이유
