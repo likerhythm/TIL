@@ -37,5 +37,5 @@
     * [2. 크루스칼 알고리즘](./algorithm/최소신장트리/2.%20크루스칼%20알고리즘.md)
     * [3. 프림 알고리즘](./algorithm/최소신장트리/3.%20프림%20알고리즘.md)
 # Spring
-* [Spring IoC Container Overview](./Spring/Spring%20IoC%20Container%20Overview.md)
-* [스프링과 스프링부트의 차이점](./Spring/스프링과-스프링부트의-차이점.md)
+* [Spring IoC Container Overview](./spring/Spring%20IoC%20Container%20Overview.md)
+* [스프링과 스프링부트의 차이점](./spring/스프링과-스프링부트의-차이점.md)

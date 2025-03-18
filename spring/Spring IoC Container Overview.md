@@ -42,7 +42,7 @@ configuration metadata는 **annotated component classes(어노테이션이 적�
 애플리케이션 클래스(POJOs)와 Configuration Metadata를 결합하여
 ApplicationContext를 생성 및 초기화 하여 실행 가능한 시스템 또는 애플리케이션이 생성됩니다.
 
-![img.png](image/spring container diagram1.png)
+![img.png](./image/spring%20container%20diagram1.png)
 
 # Configuration Metadata
 Spring IoC Container가 사용하는 Configuration Metadata는 애플리케이션의 구성 요소(컴포넌트)를 어떻게 인스턴스화하고,
