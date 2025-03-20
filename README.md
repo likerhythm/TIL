@@ -25,9 +25,9 @@
 * [MySQL의 동시성 문제와 락](./database/mysql/동시성%20문제와%20락.md)
 
 # 네트워크
-* [OSI 7 Layer](./네트워크/osi_7_layer)
-    * [L1 - Physical Layer](./네트워크/osi_7_layer/L1%20-%20Physical%20Layer.md)
-    * [L2 - Data Link Layer.md](./네트워크/osi_7_layer/L2%20-%20Data%20Link%20Layer.md)
+* [OSI 7 Layer](network/osi_7_layer)
+    * [L1 - Physical Layer](network/osi_7_layer/L1%20-%20Physical%20Layer.md)
+    * [L2 - Data Link Layer.md](network/osi_7_layer/L2%20-%20Data%20Link%20Layer.md)
 
 # algorithm
 * [유클리드 호제법으로 최대 공약수 구하기](./algorithm/유클리드-호제법으로-최대공약수-구하기.md)
